@@ -34,7 +34,7 @@ const Cart = () => {
       "Content-Type": "application/json",
     };
     const response = await fetch(
-      `https://inspire-backend-2ucl3owyr-ubaidullahmomers-projects.vercel.app/create-checkout-session`,
+      `https://inspirebackend.vercel.app/create-checkout-session`,
       {
         method: "POST",
         headers: headers,
