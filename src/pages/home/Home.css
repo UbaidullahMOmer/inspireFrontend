@@ -454,10 +454,10 @@
 
             >span {
                 color: #0F0F0F;
-                font-size: 18px;
+                font-size: 14px;
                 font-style: normal;
-                font-weight: 600;
-                line-height: 80%;
+                font-weight: 500;
+                line-height: 60%;
             }
         }
     }
