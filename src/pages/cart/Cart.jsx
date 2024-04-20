@@ -10,6 +10,7 @@ import {
 } from "../../redux/CartReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
+import "./cart.css"
 const Cart = () => {
   const [isLoading, setIsLoading] = useState(false)
   const cartItems = useSelector(cartItemsSelector);
@@ -252,11 +253,11 @@ const Cart = () => {
             <div className="text-white text-opacity-70 text-base font-medium">
               We Accept
             </div>
-            <div className="justify-start items-center gap-[18px] inline-flex">
-              <img src="images/stripelogo.png" alt="" />
-              <img src="images/apple-paylogo.png" alt="" />
-              <img src="images/Googlelogo.png" alt="" />
-              <img src="images/paypallogo.png" alt="" />
+            <div className="payement_logos">
+              <img src="images/stripelogo.png" alt=""  className="payement_logo" />
+              <img src="images/apple-paylogo.png" alt="" className="payement_logo" />
+              <img src="images/Googlelogo.png" alt="" className="payement_logo" />
+              <img src="images/paypallogo.png" alt="" className="payement_logo" />
             </div>
           </div>
         </div>
