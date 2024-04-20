@@ -1,0 +1,40 @@
+.navbar_main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0F0F0F;
+    padding: 36px 6vw;
+
+    .nav_icons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+
+        .nav_cart_item_number {
+            position: relative;
+            top: -22px;
+            left: 32px;
+
+            >span {
+                color: #0F0F0F;
+                font-family: Roboto;
+                font-size: 10px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                letter-spacing: 0.5px;
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 4px 6px;
+                background-color: #FCF696;
+                border-radius: 100%;
+            }
+        }
+
+
+
+    }
+}
