@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../reactRoute/RouteConstants";
 import FaqSection from "../../components/homeComponents/FaqSection";
+import { enqueueSnackbar } from "notistack";
 import {
   cartItemsSelector,
   clearCart,
@@ -26,6 +27,11 @@ const Cart = () => {
     dispatch(clearCart());
   };
   const handleCheckout = async () => {
+    if (cartItems.length < 1) {
+      enqueueSnackbar("Cart is empty", { variant: "error" });
+      setIsLoading(false);
+      return;
+    }
     setIsLoading(true);
     const stripe = await loadStripe(
       "pk_test_51P7GGR2KcbZATXLfxRcETmoKL8lePagNdhe3n3S2HQq1Tnwi8wPsxpTGGrr1bLlim5kiMlIUGg736RQLNQWnFcA500a4Lxqcvv"
@@ -51,7 +57,7 @@ const Cart = () => {
     console.log(results);
     setIsLoading(false);
   };
-  
+
   console.log(cartItems?.length > 0, "cartItems?.lenght > 0");
   return (
     <>
@@ -255,7 +261,11 @@ const Cart = () => {
             </div>
             <div
               onClick={handleCheckout}
-              className="cursor-pointer self-stretch h-[46px] bg-amber-300 rounded-full py-[12px] text-stone-950 text-xl font-bold leading-snugl shadow justify-center items-center gap-2.5 inline-flex"
+              className={`cursor-pointer self-stretch h-[46px] bg-amber-300 rounded-full py-[12px] text-stone-950 text-xl font-bold leading-snugl shadow justify-center items-center gap-2.5 inline-flex ${
+                isLoading ? "opacity-50" : "opacity-100"
+              } ${
+                cartItems?.length < 1 ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
             >
               {isLoading ? "Loading..." : "Check Out"}
             </div>
