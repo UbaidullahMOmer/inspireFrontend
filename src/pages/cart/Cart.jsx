@@ -51,7 +51,8 @@ const Cart = () => {
     console.log(results);
     setIsLoading(false);
   };
-
+  
+  console.log(cartItems?.length > 0, "cartItems?.lenght > 0");
   return (
     <>
       <div className="flex flex-col gap-[56px] px-[6vw] bg-[#0F0F0F] text-[#FFF]">
@@ -104,7 +105,7 @@ const Cart = () => {
               </span>
             </div>
 
-            {cartItems?.lenght > 0 ? (
+            {cartItems?.length > 0 ? (
               cartItems?.map((item) => {
                 return (
                   <div className="flex items-center justify-between w-full  p-2 bg-[#272727] rounded-[4px] max-sm:flex-col max-sm:items-start max-sm:gap-4">

@@ -33,6 +33,7 @@ export const slice = createSlice({
       saveCartItems(state.cartProducts);
     },
     removeItemFromCart: (state, action) => {
+      enqueueSnackbar('Item removed from cart', { variant: 'success' })
       const indexToRemove = state.cartProducts.findIndex(
         (item) => item.id === action.payload.id
       );
@@ -43,6 +44,7 @@ export const slice = createSlice({
       saveCartItems(state.cartProducts);
     },
     updateItemQuantity: (state, action) => {
+      enqueueSnackbar('Item quantity updated', { variant: 'success' })
       const { id, qty } = action.payload;
       const item = state.cartProducts.find((item) => item.id === id);
       if (item) {
@@ -52,6 +54,7 @@ export const slice = createSlice({
       saveCartItems(state.cartProducts);
     },
     clearCart: (state) => {
+      enqueueSnackbar('Cart cleared', { variant: 'success' })
       state.cartProducts = [];
       // Clear cart items from browser storage
       localStorage.removeItem("cartItems");
