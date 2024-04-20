@@ -10,9 +10,9 @@ import {
 } from "../../redux/CartReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
-import "./cart.css"
+import "./cart.css";
 const Cart = () => {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const cartItems = useSelector(cartItemsSelector);
   console.log(cartItems, "cartItems");
   const dispatch = useDispatch();
@@ -26,8 +26,10 @@ const Cart = () => {
     dispatch(clearCart());
   };
   const handleCheckout = async () => {
-    setIsLoading(true)
-    const stripe = await loadStripe("pk_test_51P7GGR2KcbZATXLfxRcETmoKL8lePagNdhe3n3S2HQq1Tnwi8wPsxpTGGrr1bLlim5kiMlIUGg736RQLNQWnFcA500a4Lxqcvv");
+    setIsLoading(true);
+    const stripe = await loadStripe(
+      "pk_test_51P7GGR2KcbZATXLfxRcETmoKL8lePagNdhe3n3S2HQq1Tnwi8wPsxpTGGrr1bLlim5kiMlIUGg736RQLNQWnFcA500a4Lxqcvv"
+    );
     const body = {
       products: cartItems,
     };
@@ -47,7 +49,7 @@ const Cart = () => {
       sessionId: session.id,
     });
     console.log(results);
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   return (
@@ -102,93 +104,99 @@ const Cart = () => {
               </span>
             </div>
 
-            {cartItems?.map((item) => {
-              return (
-                <div className="flex items-center justify-between w-full  p-2 bg-[#272727] rounded-[4px] max-sm:flex-col max-sm:items-start max-sm:gap-4">
-                  <div className="flex items-center gap-[10px] w-[275px]">
-                    <img src={item.img} className="rounded-[4px]" alt="" />
-                    <span className="opacity-75 font-[500] text-[16px] ">
-                      {item.name}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-[16px] w-[146px]">
-                    <span
-                      className="cursor-pointer"
-                      onClick={() =>
-                        handleQuantityChange(item?.id, item?.qty + 1)
-                      }
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        height="24"
-                        color="#ffffff"
-                        fill="none"
+            {cartItems?.lenght > 0 ? (
+              cartItems?.map((item) => {
+                return (
+                  <div className="flex items-center justify-between w-full  p-2 bg-[#272727] rounded-[4px] max-sm:flex-col max-sm:items-start max-sm:gap-4">
+                    <div className="flex items-center gap-[10px] w-[275px]">
+                      <img src={item.img} className="rounded-[4px]" alt="" />
+                      <span className="opacity-75 font-[500] text-[16px] ">
+                        {item.name}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-[16px] w-[146px]">
+                      <span
+                        className="cursor-pointer"
+                        onClick={() =>
+                          handleQuantityChange(item?.id, item?.qty + 1)
+                        }
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          height="24"
+                          color="#ffffff"
+                          fill="none"
+                          className="cursor-pointer"
+                        >
+                          <path
+                            d="M12 4V20M20 12H4"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      <span className="p-[13px] rounded-[4px] py-[6px] border">
+                        {item.qty}
+                      </span>
+                      <span
+                        onClick={() =>
+                          handleQuantityChange(
+                            item?.id,
+                            item?.qty === 1 ? 1 : item?.qty - 1
+                          )
+                        }
                         className="cursor-pointer"
                       >
-                        <path
-                          d="M12 4V20M20 12H4"
-                          stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </span>
-                    <span className="p-[13px] rounded-[4px] py-[6px] border">
-                      {item.qty}
-                    </span>
-                    <span
-                      onClick={() =>
-                        handleQuantityChange(
-                          item?.id,
-                          item?.qty === 1 ? 1 : item?.qty - 1
-                        )
-                      }
-                      className="cursor-pointer"
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          height="24"
+                          color="#ffffff"
+                          fill="none"
+                          className="cursor-pointer"
+                        >
+                          <path
+                            d="M20 12L4 12"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                    <div className="flex items-center w-[191px]">
+                      <select className="font-[500] text-[16px] bg-transparent outline-none opacity-75">
+                        <option value="" className="text-[#333] opacity-75">
+                          fruit
+                        </option>
+                        <option value="" className="text-[#333] opacity-75">
+                          Strawberry Kiwi
+                        </option>
+                      </select>
+                    </div>
+                    <div className="font-[500] text-[16px] w-[200px] opacity-75">
+                      ${item.price}
+                    </div>
+                    <div
+                      onClick={() => handleRemoveItem(item?.id)}
+                      className="font-[500] text-[16px] w-[200px] opacity-75 cursor-pointer"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        height="24"
-                        color="#ffffff"
-                        fill="none"
-                        className="cursor-pointer"
-                      >
-                        <path
-                          d="M20 12L4 12"
-                          stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </span>
+                      <i class="ri-close-large-line"></i>
+                    </div>
                   </div>
-                  <div className="flex items-center w-[191px]">
-                    <select className="font-[500] text-[16px] bg-transparent outline-none opacity-75">
-                      <option value="" className="text-[#333] opacity-75">
-                        fruit
-                      </option>
-                      <option value="" className="text-[#333] opacity-75">
-                        Strawberry Kiwi
-                      </option>
-                    </select>
-                  </div>
-                  <div className="font-[500] text-[16px] w-[200px] opacity-75">
-                    ${item.price}
-                  </div>
-                  <div
-                    onClick={() => handleRemoveItem(item?.id)}
-                    className="font-[500] text-[16px] w-[200px] opacity-75 cursor-pointer"
-                  >
-                    <i class="ri-close-large-line"></i>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })
+            ) : (
+              <div className="text-white text-lg font-medium">
+                Cart is empty
+              </div>
+            )}
           </div>
           <div className="w-[520px] p-6 bg-stone-900 flex-col justify-center items-start gap-[18px] inline-flex rounded-[8px] max-[1240px]:w-[100%]">
             <div className="self-stretch justify-between items-center inline-flex">
@@ -248,16 +256,32 @@ const Cart = () => {
               onClick={handleCheckout}
               className="cursor-pointer self-stretch h-[46px] bg-amber-300 rounded-full py-[12px] text-stone-950 text-xl font-bold leading-snugl shadow justify-center items-center gap-2.5 inline-flex"
             >
-              {isLoading? "Loading..." :"Check Out"}
+              {isLoading ? "Loading..." : "Check Out"}
             </div>
             <div className="text-white text-opacity-70 text-base font-medium">
               We Accept
             </div>
             <div className="payement_logos">
-              <img src="images/stripelogo.png" alt=""  className="payement_logo" />
-              <img src="images/apple-paylogo.png" alt="" className="payement_logo" />
-              <img src="images/Googlelogo.png" alt="" className="payement_logo" />
-              <img src="images/paypallogo.png" alt="" className="payement_logo" />
+              <img
+                src="images/stripelogo.png"
+                alt=""
+                className="payement_logo"
+              />
+              <img
+                src="images/apple-paylogo.png"
+                alt=""
+                className="payement_logo"
+              />
+              <img
+                src="images/Googlelogo.png"
+                alt=""
+                className="payement_logo"
+              />
+              <img
+                src="images/paypallogo.png"
+                alt=""
+                className="payement_logo"
+              />
             </div>
           </div>
         </div>
