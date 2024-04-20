@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../reactRoute/RouteConstants";
 import FaqSection from "../../components/homeComponents/FaqSection";
@@ -11,6 +11,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 const Cart = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const cartItems = useSelector(cartItemsSelector);
   console.log(cartItems, "cartItems");
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Cart = () => {
     dispatch(clearCart());
   };
   const handleCheckout = async () => {
+    setIsLoading(true)
     const stripe = await loadStripe("pk_test_51P7GGR2KcbZATXLfxRcETmoKL8lePagNdhe3n3S2HQq1Tnwi8wPsxpTGGrr1bLlim5kiMlIUGg736RQLNQWnFcA500a4Lxqcvv");
     const body = {
       products: cartItems,
@@ -44,6 +46,7 @@ const Cart = () => {
       sessionId: session.id,
     });
     console.log(results);
+    setIsLoading(false)
   };
 
   return (
@@ -244,7 +247,7 @@ const Cart = () => {
               onClick={handleCheckout}
               className="cursor-pointer self-stretch h-[46px] bg-amber-300 rounded-full py-[12px] text-stone-950 text-xl font-bold leading-snugl shadow justify-center items-center gap-2.5 inline-flex"
             >
-              Check Out
+              {isLoading? "Loading..." :"Check Out"}
             </div>
             <div className="text-white text-opacity-70 text-base font-medium">
               We Accept
