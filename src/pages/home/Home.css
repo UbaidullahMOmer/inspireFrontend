@@ -430,8 +430,8 @@
 @media (width < 580px) {
     .our_inspiration{
         .our_inspiration_heading {
-            font-size: 36px;
-            font-weight: 600;
+            font-size: 28px;
+            font-weight: 500;
     
             >span {
                 color: #EFB749;
