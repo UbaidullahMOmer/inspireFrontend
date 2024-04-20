@@ -1,6 +1,6 @@
 // CartReducer.js
 import { createSlice } from "@reduxjs/toolkit";
-
+import {  enqueueSnackbar } from 'notistack'
 // Action creator to load cart items from browser storage
 export const loadCartItems = () => {
   const storedItems = localStorage.getItem("cartItems");
@@ -19,6 +19,7 @@ export const slice = createSlice({
   },
   reducers: {
     addItemToCart: (state, action) => {
+      enqueueSnackbar('Item added to cart', { variant: 'success' })
       const newItem = action.payload;
       const existingItemIndex = state.cartProducts.findIndex(
         (item) => item.id === newItem.id
