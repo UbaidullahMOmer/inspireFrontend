@@ -11,7 +11,7 @@ function OurInspiration() {
         nam leo fringilla eget lorem. Sit vestibulum phasellus integer et et
         diam malesuada. Sed tortor orci mauris proin ac. Venenatis euismod
         mauris quis sit purus nisi. Sed quis eget augue ut aliquam sed.
-      </div>
+      </div> 
       <div className="our_inspiration_cards">
         <div className="our_inspiration_card">
           <div className="our_inspiration_card_icon">

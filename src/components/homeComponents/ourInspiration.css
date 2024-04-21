@@ -70,5 +70,10 @@
                 line-height: 160%;
             }
         }
+        .our_inspiration_card:hover {
+            border: 2px solid #EFB749;
+            box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
     }
 }
