@@ -364,7 +364,7 @@
         width: 100%;
         justify-content: space-between;
         align-items: center;
-
+        cursor: pointer;
         .faq_question {
           color: #fff;
           font-size: 20px;
