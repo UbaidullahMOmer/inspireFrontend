@@ -351,19 +351,29 @@
     .faq_question_div {
       display: flex;
       width: 100%;
-      padding: 32px;
-      justify-content: space-between;
-      align-items: center;
+      gap: 32px;
+      flex-direction: column;
       border-radius: 10px;
       background: rgba(255, 255, 255, 0.1);
       box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.05);
+      padding: 32px;
+      .faq_question_top {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
 
-      .faq_question {
-        color: #fff;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 110%;
+        .faq_question {
+          color: #fff;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 110%;
+        }
+      }
+      .faq_question_bottom{
+        
+        color: #fff
       }
     }
   }
@@ -426,10 +436,10 @@
     .main_product_section_heading {
       font-size: 38px;
       font-weight: 600;
-        >span{
-          font-size: 38px;
-          font-weight: 600;
-        }
+      > span {
+        font-size: 38px;
+        font-weight: 600;
+      }
     }
   }
   .our_inspiration {
