@@ -11,14 +11,11 @@ function HeroSection() {
           <div className="hero_content_detail">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.
           </div>
-          <div className="hero_content_btn">
+          <a href="#main_product_section" className="hero_content_btn">
             <div className="hero_btn_text">
               Order Now
             </div>
-            <div className="hero_btn_icon">
-
-            </div>
-          </div>
+          </a>
         </div>
         <div className="hero_image_section">
           <img src="./images/heroSectionImg.png" alt="" />

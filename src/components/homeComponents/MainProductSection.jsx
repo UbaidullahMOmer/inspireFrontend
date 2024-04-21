@@ -41,7 +41,7 @@ function MainProductSection() {
   };
 
   return (
-    <div className="main_product_section">
+    <div id="main_product_section" className="main_product_section">
       <div className="main_product_section_heading">
         Here’s what is in the <span>box</span>
       </div>
@@ -164,7 +164,7 @@ function MainProductSection() {
               {products[selectedProduct].price -
                 products[selectedProduct].discount}
             </div>
-            <div className="discount_percentage">
+            <div className="discount_persentage">
               <span>{products[selectedProduct].discount}% Discount</span>
             </div>
           </div>
