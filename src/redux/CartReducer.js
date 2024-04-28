@@ -15,7 +15,7 @@ const saveCartItems = (cartProducts) => {
 export const slice = createSlice({
   name: "CartReducer",
   initialState: {
-    cartProducts: loadCartItems(), // Load cart items from browser storage
+    cartProducts: loadCartItems(),
   },
   reducers: {
     addItemToCart: (state, action) => {

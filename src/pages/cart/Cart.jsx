@@ -12,10 +12,20 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import "./cart.css";
+import CartModel from "./CartModel";
+import { useCreateOrderMutation } from "../../redux/InspireApis";
 const Cart = () => {
+  const [createOrder, { isLoading: createOrderLoading }] =
+    useCreateOrderMutation();
+  const [checkoutFiledsData, setCheckoutFiledsData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
   const cartItems = useSelector(cartItemsSelector);
-  console.log(cartItems, "cartItems");
+  const [checkoutModal, setCheckoutModal] = useState(false);
   const dispatch = useDispatch();
   const handleQuantityChange = (itemId, qty) => {
     dispatch(updateItemQuantity({ id: itemId, qty }));
@@ -26,12 +36,39 @@ const Cart = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+  const totalPrice = cartItems.reduce((total, item) => {
+    const quantity = item?.qty || 0;
+    const price = item?.attributes?.price || 0;
+    return total + quantity * price;
+  }, 0);
+
   const handleCheckout = async () => {
     if (cartItems.length < 1) {
       enqueueSnackbar("Cart is empty", { variant: "error" });
       setIsLoading(false);
       return;
     }
+    const data = {
+        address: checkoutFiledsData.address,
+        email: checkoutFiledsData.email,
+        userName: checkoutFiledsData.name,
+        phoneNumber: checkoutFiledsData.phone,
+        orderCreationDate: new Date(),
+        products: cartItems,
+        totalPrice: totalPrice,
+    };
+
+    await createOrder(JSON.stringify(data))
+      .then((resp) => {
+        console.log(resp, "resp");
+      })
+      .catch((err) => {
+        console.log(err, "err");
+        setIsLoading(false);
+        if (err) {
+          return true;
+        }
+      });
     setIsLoading(true);
     const stripe = await loadStripe(
       "pk_test_51P7GGR2KcbZATXLfxRcETmoKL8lePagNdhe3n3S2HQq1Tnwi8wPsxpTGGrr1bLlim5kiMlIUGg736RQLNQWnFcA500a4Lxqcvv"
@@ -54,13 +91,19 @@ const Cart = () => {
     const results = await stripe.redirectToCheckout({
       sessionId: session.id,
     });
-    console.log(results);
     setIsLoading(false);
   };
-
-  console.log(cartItems?.length > 0, "cartItems?.lenght > 0");
   return (
     <>
+      {checkoutModal && (
+        <CartModel
+          onClose={() => setCheckoutModal(false)}
+          handleCheckout={handleCheckout}
+          isLoading={isLoading}
+          setCheckoutFiledsData={setCheckoutFiledsData}
+          checkoutFiledsData={checkoutFiledsData}
+        />
+      )}
       <div className="flex flex-col gap-[56px] px-[6vw] bg-[#0F0F0F] text-[#FFF]">
         <div className="flex items-center justify-between">
           <Link
@@ -110,15 +153,21 @@ const Cart = () => {
                 <i class="ri-close-large-line"></i>
               </span>
             </div>
-
             {cartItems?.length > 0 ? (
               cartItems?.map((item) => {
+                const { name, image, flavor, price } = item?.attributes;
+                const { url } = image?.data?.attributes;
+                console.log(item, "item");
                 return (
                   <div className="flex items-center justify-between w-full  p-2 bg-[#272727] rounded-[4px] max-sm:flex-col max-sm:items-start max-sm:gap-4">
                     <div className="flex items-center gap-[10px] w-[275px]">
-                      <img src={item.img} className="rounded-[4px]" alt="" />
+                      <img
+                        src={url}
+                        className="rounded-[4px] w-[100px] h-[100px] object-cover"
+                        alt=""
+                      />
                       <span className="opacity-75 font-[500] text-[16px] ">
-                        {item.name}
+                        {name}
                       </span>
                     </div>
                     <div className="flex items-center gap-[16px] w-[146px]">
@@ -177,18 +226,9 @@ const Cart = () => {
                         </svg>
                       </span>
                     </div>
-                    <div className="flex items-center w-[191px]">
-                      <select className="font-[500] text-[16px] bg-transparent outline-none opacity-75">
-                        <option value="" className="text-[#333] opacity-75">
-                          fruit
-                        </option>
-                        <option value="" className="text-[#333] opacity-75">
-                          Strawberry Kiwi
-                        </option>
-                      </select>
-                    </div>
+                    <div className="flex items-center w-[191px]">{flavor}</div>
                     <div className="font-[500] text-[16px] w-[200px] opacity-75">
-                      ${item.price}
+                      ${price * item?.qty}
                     </div>
                     <div
                       onClick={() => handleRemoveItem(item?.id)}
@@ -210,13 +250,17 @@ const Cart = () => {
               <div className="text-white text-opacity-70 text-lg font-medium">
                 Total
               </div>
-              <div className="text-white text-lg font-medium">Total</div>
+              <div className="text-white text-lg font-medium">
+                ${totalPrice}
+              </div>
             </div>
             <div className="self-stretch justify-between items-center inline-flex">
               <div className="text-white text-opacity-70 text-lg font-medium">
                 Sub-Total
               </div>
-              <div className="text-white text-lg font-medium">$40.00</div>
+              <div className="text-white text-lg font-medium">
+                ${totalPrice}
+              </div>
             </div>
             <div className="self-stretch justify-between items-center inline-flex">
               <div className="text-white text-opacity-70 text-lg font-medium">
@@ -260,7 +304,9 @@ const Cart = () => {
               </div>
             </div>
             <div
-              onClick={handleCheckout}
+              onClick={() => {
+                cartItems?.length > 0 && setCheckoutModal(true);
+              }}
               className={`cursor-pointer self-stretch h-[46px] bg-amber-300 rounded-full py-[12px] text-stone-950 text-xl font-bold leading-snugl shadow justify-center items-center gap-2.5 inline-flex ${
                 isLoading ? "opacity-50" : "opacity-100"
               } ${

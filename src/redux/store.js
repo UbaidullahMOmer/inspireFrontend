@@ -1,5 +1,9 @@
 // store.js
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { inspireApis } from './InspireApis';
+import { setupListeners } from '@reduxjs/toolkit/query';
+
+// Import your reducers
 import CartReducer, { loadCartItems } from "./CartReducer";
 
 // Load cart items from browser storage
@@ -9,9 +13,17 @@ const preloadedState = {
   },
 };
 
+// Combine reducers
+const rootReducer = combineReducers({
+  cart: CartReducer,
+  [inspireApis.reducerPath]: inspireApis.reducer,
+});
+
 export const store = configureStore({
-  reducer: {
-    cart: CartReducer,
-  },
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(inspireApis.middleware),
   preloadedState,
 });
+
+setupListeners(store.dispatch);

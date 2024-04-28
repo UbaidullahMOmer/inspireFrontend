@@ -1,45 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../redux/CartReducer";
-
+import { useGetProductsQuery } from "../../redux/InspireApis";
 function MainProductSection() {
+  const { data: productsRes } = useGetProductsQuery();
   const [selectedProduct, setSelectedProduct] = useState(0);
   const dispatch = useDispatch();
-  const products = [
-    {
-      name: "Inspire fruit Pre Workout",
-      price: 29.0,
-      flavor: "fruit",
-      rating: 4.9,
-      ratingCount: 188,
-      reviewCount: 67,
-      img: "./images/productSmallImage.png",
-      discount: 10,
-      id: 1,
-      qty: 1,
-    },
-    {
-      name: "Inspire Strawberry Kiwi Pre Workout",
-      price: 22.0,
-      flavor: "Strawberry Kiwi",
-      rating: 4.6,
-      ratingCount: 64,
-      reviewCount: 41,
-      img: "./images/productSmallImage.png",
-      discount: 10,
-      id: 2,
-      qty: 1,
-    },
-  ];
-
   const handleProductClick = (index) => {
     setSelectedProduct(index);
   };
   const handleAddToCart = () => {
-    const selectedProductData = products[selectedProduct];
-    dispatch(addItemToCart(selectedProductData));
+    const selectedProductData = productsRes?.data?.[selectedProduct];
+    dispatch(addItemToCart({ ...selectedProductData, qty: 1 }));
   };
-
   return (
     <div id="main_product_section" className="main_product_section">
       <div className="main_product_section_heading">
@@ -47,22 +20,29 @@ function MainProductSection() {
       </div>
       <div className="product">
         <div className="product_images">
-          {products.map((product, index) => (
-            <div
-              key={index}
-              className={`product_image ${
-                selectedProduct === index ? "active_product_image" : ""
-              }`}
-              onClick={() => handleProductClick(index)}
-            >
-              <img src={product.img} alt={product.name} />
-            </div>
-          ))}
+          {productsRes?.data?.map((product, index) => {
+            const { url } = product.attributes?.image?.data?.attributes;
+            console.log(url, "url");
+            return (
+              <>
+                <div
+                  key={index}
+                  className={`product_image  ${selectedProduct === index ? "active_product_image" : ""
+                    }`}
+                  onClick={() => handleProductClick(index)}
+                >
+                  <img src={url} alt={"product"} />
+                </div>
+              </>
+            )
+          })
+          }
         </div>
         <div className="selectedProductImage">
           <img
-            src={products[selectedProduct].img}
-            alt={products[selectedProduct].name}
+            className=""
+            src={productsRes?.data?.[selectedProduct].attributes?.image?.data?.attributes?.url}
+            alt={productsRes?.data?.[selectedProduct].attributes?.name}
           />
         </div>
         <div className="selectedProductDetail">
@@ -143,36 +123,34 @@ function MainProductSection() {
               />
             </svg>
             <div className="rating_detail">
-              {products[selectedProduct].rating} stars based on the{" "}
-              {products[selectedProduct].ratingCount} ratings
+              4.6 {" "}
+              64
             </div>
           </div>
           <div className="selected_product_heading">
-            {products[selectedProduct].name}
+            {productsRes?.data?.[selectedProduct]?.attributes?.name}
           </div>
           <div className="selected_product_paragraph">
-            Lacus vestibulum ultricies mi risus, duis non, volutpat nullam non.
-            Magna congue nisi maecenas elit aliquet eu sed consectetur. Vitae
-            quis cras vitae praesent morbi adipiscing purus consectetur mi.
+            {productsRes?.data?.[selectedProduct]?.attributes?.details}
           </div>
           <div className="price_section">
             <div className="without_discount_price">
-              ${products[selectedProduct].price}
+              ${productsRes?.data?.[selectedProduct]?.attributes?.price}
             </div>
             <div className="with_discount_price">
               $
-              {products[selectedProduct].price -
-                products[selectedProduct].discount}
+              {productsRes?.data?.[selectedProduct]?.attributes?.price -
+                productsRes?.data?.[selectedProduct]?.attributes?.discount}
             </div>
             <div className="discount_persentage">
-              <span>{products[selectedProduct].discount}% Discount</span>
+              <span>{productsRes?.data?.[selectedProduct]?.attributes?.discount}% Discount</span>
             </div>
           </div>
           <div onClick={handleAddToCart} className="add_to_cart_btn">
             <span>
               Add to cart - $
-              {products[selectedProduct].price -
-                products[selectedProduct].discount}
+              {productsRes?.data?.[selectedProduct]?.attributes?.price -
+                productsRes?.data?.[selectedProduct]?.attributes?.discount}
             </span>
           </div>
           <div className="short_message">30 days guarantee - Fast Delivery</div>
@@ -181,5 +159,4 @@ function MainProductSection() {
     </div>
   );
 }
-
 export default MainProductSection;
