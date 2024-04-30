@@ -43,38 +43,18 @@ const Cart = () => {
   }, 0);
 
   const handleCheckout = async () => {
-    // if (cartItems.length < 1) {
-    //   enqueueSnackbar("Cart is empty", { variant: "error" });
-    //   setIsLoading(false);
-    //   return;
-    // }
-    // const data = {
-    //   address: checkoutFiledsData.address,
-    //   email: checkoutFiledsData.email,
-    //   userName: checkoutFiledsData.name,
-    //   phoneNumber: checkoutFiledsData.phone,
-    //   orderCreationDate: new Date(),
-    //   products: cartItems,
-    //   totalPrice: totalPrice,
-    // };
-
-    // await createOrder(JSON.stringify(data))
-    //   .then((resp) => {
-    //     console.log(resp, "resp");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err, "err");
-    //     setIsLoading(false);
-    //     if (err) {
-    //       return true;
-    //     }
-    //   });
+    if (cartItems.length < 1) {
+      enqueueSnackbar("Cart is empty", { variant: "error" });
+      setIsLoading(false);
+      return;
+    }
     setIsLoading(true);
     const stripe = await loadStripe(
       "pk_test_51P7GGR2KcbZATXLfxRcETmoKL8lePagNdhe3n3S2HQq1Tnwi8wPsxpTGGrr1bLlim5kiMlIUGg736RQLNQWnFcA500a4Lxqcvv"
     );
     const body = {
       products: cartItems,
+      shippingAddress: checkoutFiledsData,
     };
     const headers = {
       "Content-Type": "application/json",
