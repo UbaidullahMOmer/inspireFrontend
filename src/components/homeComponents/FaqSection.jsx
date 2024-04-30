@@ -42,7 +42,7 @@ function FaqSection() {
           <div className="faq_question_div" key={index}>
             <div className="faq_question_top" onClick={() => toggleAnswer(index)}>
               <div className="faq_question">{faq.question}</div>
-              <div className="faq_arrow">
+              <div className={`faq_arrow ${faq.isOpen ? "rotate-180" : ""}`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
