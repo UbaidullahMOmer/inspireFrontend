@@ -7,6 +7,7 @@ import MainProductSection from '../../components/homeComponents/MainProductSecti
 import FaqSection from '../../components/homeComponents/FaqSection'
 
 import './Home.css'
+import ReviewSection from '../../components/homeComponents/ReviewSection'
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
             <OurInspiration />
             <ProductImgSection />
             <MainProductSection />
+            <ReviewSection />
             <FaqSection />
         </>
     )

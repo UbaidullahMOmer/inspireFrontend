@@ -4,4 +4,5 @@ export const ROUTES = {
     cart: '/cart',
     success: '/success',
     cancel: '/cancel',
+    login: '/login',
 }

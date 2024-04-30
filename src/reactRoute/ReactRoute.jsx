@@ -9,6 +9,7 @@ import Navbar from "../components/shared/navbar/Navbar.jsx";
 import Footer from "../components/shared/footer/Footer.jsx";
 import Success from "../pages/success/Success.jsx";
 import Cancel from "../pages/cancel/Cancel.jsx";
+import Login from "../pages/login/Login.jsx";
 
 const ReactRoute = () => {
     return (
@@ -20,6 +21,7 @@ const ReactRoute = () => {
                 <Route path={ROUTES.cart} element={<Cart />} />
                 <Route path={ROUTES.success} element={<Success />} />
                 <Route path={ROUTES.cancel} element={<Cancel />} />
+                <Route path={ROUTES.login} element={<Login />} />
             </Routes>
             <Footer />
         </BrowserRouter>
