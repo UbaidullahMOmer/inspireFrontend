@@ -49,13 +49,13 @@ const Cart = () => {
       return;
     }
     const data = {
-        address: checkoutFiledsData.address,
-        email: checkoutFiledsData.email,
-        userName: checkoutFiledsData.name,
-        phoneNumber: checkoutFiledsData.phone,
-        orderCreationDate: new Date(),
-        products: cartItems,
-        totalPrice: totalPrice,
+      address: checkoutFiledsData.address,
+      email: checkoutFiledsData.email,
+      userName: checkoutFiledsData.name,
+      phoneNumber: checkoutFiledsData.phone,
+      orderCreationDate: new Date(),
+      products: cartItems,
+      totalPrice: totalPrice,
     };
 
     await createOrder(JSON.stringify(data))
@@ -155,19 +155,16 @@ const Cart = () => {
             </div>
             {cartItems?.length > 0 ? (
               cartItems?.map((item) => {
-                const { name, image, flavor, price } = item?.attributes;
-                const { url } = image?.data?.attributes;
-                console.log(item, "item");
                 return (
                   <div className="flex items-center justify-between w-full  p-2 bg-[#272727] rounded-[4px] max-sm:flex-col max-sm:items-start max-sm:gap-4">
                     <div className="flex items-center gap-[10px] w-[275px]">
                       <img
-                        src={url}
+                        src={item?.attributes?.image?.data?.attributes?.url}
                         className="rounded-[4px] w-[100px] h-[100px] object-cover"
                         alt=""
                       />
                       <span className="opacity-75 font-[500] text-[16px] ">
-                        {name}
+                        {item?.attributes?.name}
                       </span>
                     </div>
                     <div className="flex items-center gap-[16px] w-[146px]">
@@ -226,9 +223,11 @@ const Cart = () => {
                         </svg>
                       </span>
                     </div>
-                    <div className="flex items-center w-[191px]">{flavor}</div>
+                    <div className="flex items-center w-[191px]">
+                      {item?.attributes?.flavor}
+                    </div>
                     <div className="font-[500] text-[16px] w-[200px] opacity-75">
-                      ${price * item?.qty}
+                      ${item?.attributes?.price * item?.qty}
                     </div>
                     <div
                       onClick={() => handleRemoveItem(item?.id)}
