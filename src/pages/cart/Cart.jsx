@@ -76,12 +76,12 @@ const Cart = () => {
         body: JSON.stringify(body),
       }
     );
+    handleClearCart();
     const session = await response.json();
     const results = await stripe.redirectToCheckout({
       sessionId: session.id,
     });
     console.log(results, "results");
-    handleClearCart();
     setIsLoading(false);
   };
   const handleSubmit = async () => {
@@ -93,6 +93,7 @@ const Cart = () => {
         email: checkoutFiledsData.email,
         phone: checkoutFiledsData.phone,
         address: checkoutFiledsData.address,
+        totalPrice: totalPrice,
         products: cartItems,
       });
     } catch (error) {
