@@ -15,8 +15,6 @@ import "./cart.css";
 import CartModel from "./CartModel";
 import { useCreateOrderMutation } from "../../redux/InspireApis";
 const Cart = () => {
-  const [createOrder, { isLoading: createOrderLoading }] =
-    useCreateOrderMutation();
   const [checkoutFiledsData, setCheckoutFiledsData] = useState({
     name: "",
     email: "",
@@ -43,24 +41,18 @@ const Cart = () => {
   }, 0);
 
   const handleCheckout = async () => {
-    if (cartItems.length < 1) {
-      enqueueSnackbar("Cart is empty", { variant: "error" });
-      setIsLoading(false);
-      return;
-    }
     setIsLoading(true);
     const stripe = await loadStripe(
       "pk_test_51P7GGR2KcbZATXLfxRcETmoKL8lePagNdhe3n3S2HQq1Tnwi8wPsxpTGGrr1bLlim5kiMlIUGg736RQLNQWnFcA500a4Lxqcvv"
     );
     const body = {
       products: cartItems,
-      shippingAddress: checkoutFiledsData,
     };
     const headers = {
       "Content-Type": "application/json",
     };
     const response = await fetch(
-      `https://inspirebackend.vercel.app/create-checkout-session`,
+      `http://localhost:8000/create-checkout-session`,
       {
         method: "POST",
         headers: headers,
@@ -71,6 +63,7 @@ const Cart = () => {
     const results = await stripe.redirectToCheckout({
       sessionId: session.id,
     });
+    console.log(results);
     setIsLoading(false);
   };
   return (
@@ -284,7 +277,7 @@ const Cart = () => {
             </div>
             <div
               onClick={() => {
-                cartItems?.length > 0 && setCheckoutModal(true);
+                cartItems?.length > 0 && handleCheckout();
               }}
               className={`cursor-pointer self-stretch h-[46px] bg-amber-300 rounded-full py-[12px] text-stone-950 text-xl font-bold leading-snugl shadow justify-center items-center gap-2.5 inline-flex ${
                 isLoading ? "opacity-50" : "opacity-100"
@@ -303,7 +296,7 @@ const Cart = () => {
                 alt=""
                 className="payement_logo"
               />
-              <img
+              {/* <img
                 src="images/apple-paylogo.png"
                 alt=""
                 className="payement_logo"
@@ -317,7 +310,7 @@ const Cart = () => {
                 src="images/paypallogo.png"
                 alt=""
                 className="payement_logo"
-              />
+              /> */}
             </div>
           </div>
         </div>
