@@ -20,19 +20,18 @@ function MainProductSection() {
           ...doc.data(),
           id: doc.id,
         }))
-        console.log(filteredData, "filteredData")
+        setProducts(filteredData);
       } catch (error) {
         console.log(error);
       }
     };
     getProducts();
   },[])
-  console.log(productsRes?.data," productsRes?.data")
   const handleProductClick = (index) => {
     setSelectedProduct(index);
   };
   const handleAddToCart = () => {
-    const selectedProductData = productsRes?.data?.[selectedProduct];
+    const selectedProductData = products?.[selectedProduct];
     dispatch(addItemToCart({ ...selectedProductData, qty: 1 }));
   };
   return (
@@ -42,9 +41,8 @@ function MainProductSection() {
       </div>
       <div className="product">
         <div className="product_images">
-          {productsRes?.data?.map((product, index) => {
-            const { url } = product.attributes?.image?.data?.attributes;
-            console.log(url, "url");
+          {products?.map((product, index) => {
+            const { image } = product;
             return (
               <>
                 <div
@@ -53,7 +51,7 @@ function MainProductSection() {
                     }`}
                   onClick={() => handleProductClick(index)}
                 >
-                  <img src={url} alt={"product"} />
+                  <img src={image} alt={"product"} />
                 </div>
               </>
             )
@@ -63,8 +61,8 @@ function MainProductSection() {
         <div className="selectedProductImage">
           <img
             className=""
-            src={productsRes?.data?.[selectedProduct].attributes?.image?.data?.attributes?.url}
-            alt={productsRes?.data?.[selectedProduct].attributes?.name}
+            src={products?.[selectedProduct]?.image}
+            alt={products?.[selectedProduct]?.name}
           />
         </div>
         <div className="selectedProductDetail">
@@ -146,33 +144,33 @@ function MainProductSection() {
             </svg>
             <div className="rating_detail">
               4.6 {" "}
-              64
+              (64 reviews)
             </div>
           </div>
           <div className="selected_product_heading">
-            {productsRes?.data?.[selectedProduct]?.attributes?.name}
+            {products?.[selectedProduct]?.name}
           </div>
           <div className="selected_product_paragraph">
-            {productsRes?.data?.[selectedProduct]?.attributes?.details}
+            {products?.[selectedProduct]?.details}
           </div>
           <div className="price_section">
             <div className="without_discount_price">
-              ${productsRes?.data?.[selectedProduct]?.attributes?.price}
+              ${products?.[selectedProduct]?.price}
             </div>
             <div className="with_discount_price">
               $
-              {productsRes?.data?.[selectedProduct]?.attributes?.price -
-                productsRes?.data?.[selectedProduct]?.attributes?.discount}
+              {products?.[selectedProduct]?.price -
+                products?.[selectedProduct]?.discount}
             </div>
             <div className="discount_persentage">
-              <span>{productsRes?.data?.[selectedProduct]?.attributes?.discount}% Discount</span>
+              <span>{products?.[selectedProduct]?.discount}% Discount</span>
             </div>
           </div>
           <div onClick={handleAddToCart} className="add_to_cart_btn">
             <span>
               Add to cart - $
-              {productsRes?.data?.[selectedProduct]?.attributes?.price -
-                productsRes?.data?.[selectedProduct]?.attributes?.discount}
+              {products?.[selectedProduct]?.price -
+                products?.[selectedProduct]?.discount}
             </span>
           </div>
           <div className="short_message">30 days guarantee - Fast Delivery</div>
