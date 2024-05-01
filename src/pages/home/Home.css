@@ -138,7 +138,7 @@
       color: #efb749;
       font-size: 48px;
       font-style: normal;
-      font-weight: 700;
+      font-weight: 800;
       line-height: 110%;
     }
   }
@@ -153,10 +153,11 @@
       align-items: flex-start;
       gap: 24px;
       height: 400px !important;
-      overflow-y: scroll;
       .product_image {
+        height: 100%;
         > img {
           cursor: pointer;
+          height: 100%;
           width: 160px;
           min-width: 60px;
           height: auto;
