@@ -81,7 +81,7 @@ const Cart = () => {
         <div className="flex items-center justify-between">
           <Link
             to={ROUTES.home}
-            className="flex items-center gap-[10px] text-[#FFF]"
+            className="flex items-center gap-[10px] text-[#FFF] group"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -90,10 +90,11 @@ const Cart = () => {
               height="24"
               color="#fff"
               fill="none"
+              className="transition group-hover:scale-110 group-hover:-translate-x-1"
             >
               <path
                 d="M15 6C15 6 9.00001 10.4189 9 12C8.99999 13.5812 15 18 15 18"
-                stroke="currentColor"
+                stroke="#FFF"
                 stroke-width="1.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -106,8 +107,8 @@ const Cart = () => {
         </div>
         <div className="flex gap-[36px] max-[1240px]:flex-col">
           <div className="flex flex-col gap-[12px] w-full">
-            <div className="flex items-center p-2  justify-between max-sm:hidden w-full">
-              <span className="font-[500] text-[16px] w-[285px] opacity-75">
+            <div className="flex items-center p-2  justify-between max-sm:hidden w-full gap-[10px]">
+              <span className="font-[500] text-[16px] w-[285px] opacity-75 pr-[10px]">
                 Product Details
               </span>
               <span className="font-[500] text-[16px] w-[146px] opacity-75">
@@ -120,16 +121,15 @@ const Cart = () => {
                 Total
               </span>
               <span
-                onClick={() => handleClearCart()}
-                className="font-[500] text-[16px] w-[200px] opacity-75 cursor-pointer"
+                className="font-[500] text-[16px] w-[200px] opacity-75"
               >
-                <i class="ri-close-large-line"></i>
+                <i onClick={() => handleClearCart()} className="ri-close-large-line cursor-pointer"></i>
               </span>
             </div>
             {cartItems?.length > 0 ? (
               cartItems?.map((item) => {
                 return (
-                  <div className="flex items-center justify-between w-full  p-2 bg-[#272727] rounded-[4px] max-sm:flex-col max-sm:items-start max-sm:gap-4">
+                  <div className="flex items-center justify-between w-full gap-[10px]  p-2 bg-[#272727] rounded-[4px] max-sm:flex-col max-sm:items-start max-sm:gap-4">
                     <div className="flex items-center gap-[10px] w-[275px]">
                       <img
                         src={item?.image}
@@ -202,11 +202,9 @@ const Cart = () => {
                     <div className="font-[500] text-[16px] w-[200px] opacity-75">
                       ${item?.price * item?.qty}
                     </div>
-                    <div
-                      onClick={() => handleRemoveItem(item?.id)}
-                      className="font-[500] text-[16px] w-[200px] opacity-75 cursor-pointer"
-                    >
-                      <i class="ri-close-large-line"></i>
+
+                    <div className="font-[500] text-[16px] w-[200px] opacity-75">
+                      <i onClick={() => handleRemoveItem(item?.id)} className="ri-close-large-line cursor-pointer"></i>
                     </div>
                   </div>
                 );
@@ -279,11 +277,9 @@ const Cart = () => {
               onClick={() => {
                 cartItems?.length > 0 && handleCheckout();
               }}
-              className={`cursor-pointer self-stretch h-[46px] bg-amber-300 rounded-full py-[12px] text-stone-950 text-xl font-bold leading-snugl shadow justify-center items-center gap-2.5 inline-flex ${
-                isLoading ? "opacity-50" : "opacity-100"
-              } ${
-                cartItems?.length < 1 ? "cursor-not-allowed" : "cursor-pointer"
-              }`}
+              className={`cursor-pointer self-stretch h-[46px] bg-amber-300 rounded-full py-[12px] text-stone-950 text-xl font-bold leading-snugl shadow justify-center items-center gap-2.5 inline-flex ${isLoading ? "opacity-50" : "opacity-100"
+                } ${cartItems?.length < 1 ? "cursor-not-allowed" : "cursor-pointer"
+                }`}
             >
               {isLoading ? "Loading..." : "Check Out"}
             </div>

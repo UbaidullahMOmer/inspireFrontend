@@ -61,7 +61,7 @@
             }
 
             .our_inspiration_card_text {
-                width: 218px;
+                padding: 0 20px;
                 color: #0F0F0F;
                 text-align: center;
                 font-size: 24px;
