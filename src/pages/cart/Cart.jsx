@@ -54,7 +54,7 @@ const Cart = () => {
   const handleCheckout = async () => {
     if (!validateForm()) return;
     setIsLoading(true);
-    // await handleSubmit();
+    await handleSubmit();
     const stripe = await loadStripe(
       "pk_test_51P7GGR2KcbZATXLfxRcETmoKL8lePagNdhe3n3S2HQq1Tnwi8wPsxpTGGrr1bLlim5kiMlIUGg736RQLNQWnFcA500a4Lxqcvv"
     );
