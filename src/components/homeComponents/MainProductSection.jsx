@@ -145,8 +145,8 @@ function MainProductSection() {
               />
             </svg>
             <div className="rating_detail">
-              4.6 {" "}
-              64
+              4.6 {" "} 
+              (64)
             </div>
           </div>
           <div className="selected_product_heading">
