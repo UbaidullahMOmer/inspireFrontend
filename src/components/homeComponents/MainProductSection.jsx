@@ -1,11 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../redux/CartReducer";
 import { useGetProductsQuery } from "../../redux/InspireApis";
+import { db } from "../../firebase/firebase";
+import {getDocs, collection} from "firebase/firestore";
 function MainProductSection() {
+  const [products, setProducts] = useState([]);
   const { data: productsRes } = useGetProductsQuery();
   const [selectedProduct, setSelectedProduct] = useState(0);
   const dispatch = useDispatch();
+  const productsRef = collection(db, "products");
+  useEffect(() => {
+    
+    const getProducts = async () => {
+      // Read the data
+      try {
+        const data = await getDocs(productsRef);
+        const filteredData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+        console.log(filteredData, "filteredData")
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProducts();
+  },[])
+  console.log(productsRes?.data," productsRes?.data")
   const handleProductClick = (index) => {
     setSelectedProduct(index);
   };
