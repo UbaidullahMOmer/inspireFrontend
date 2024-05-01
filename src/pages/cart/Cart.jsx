@@ -52,7 +52,7 @@ const Cart = () => {
       "Content-Type": "application/json",
     };
     const response = await fetch(
-      `http://localhost:8000/create-checkout-session`,
+      `https://inspirebackend.vercel.app/create-checkout-session`,
       {
         method: "POST",
         headers: headers,
@@ -277,7 +277,7 @@ const Cart = () => {
             </div>
             <div
               onClick={() => {
-                cartItems?.length > 0 && handleCheckout();
+                cartItems?.length > 0 && setCheckoutModal(true);
               }}
               className={`cursor-pointer self-stretch h-[46px] bg-amber-300 rounded-full py-[12px] text-stone-950 text-xl font-bold leading-snugl shadow justify-center items-center gap-2.5 inline-flex ${
                 isLoading ? "opacity-50" : "opacity-100"
@@ -296,21 +296,6 @@ const Cart = () => {
                 alt=""
                 className="payement_logo"
               />
-              {/* <img
-                src="images/apple-paylogo.png"
-                alt=""
-                className="payement_logo"
-              />
-              <img
-                src="images/Googlelogo.png"
-                alt=""
-                className="payement_logo"
-              />
-              <img
-                src="images/paypallogo.png"
-                alt=""
-                className="payement_logo"
-              /> */}
             </div>
           </div>
         </div>
