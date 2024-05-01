@@ -52,7 +52,13 @@ const Cart = () => {
     return true;
   };
   const handleCheckout = async () => {
-    if (!validateForm()) return;
+    if (!validateForm() ){
+      enqueueSnackbar("Please fill in all the required fields", {
+        variant: "error",
+      })
+      return;
+    };
+    if(!cartItems.length) return enqueueSnackbar("Cart is empty", {variant: "error"})
     setIsLoading(true);
     await handleSubmit();
     const stripe = await loadStripe(
