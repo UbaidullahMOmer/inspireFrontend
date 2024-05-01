@@ -14,6 +14,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import "./cart.css";
 import CartModel from "./CartModel";
 import { useCreateOrderMutation } from "../../redux/InspireApis";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 const Cart = () => {
   const [checkoutFiledsData, setCheckoutFiledsData] = useState({
     name: "",
@@ -39,14 +41,29 @@ const Cart = () => {
     const price = item?.price || 0;
     return total + quantity * price;
   }, 0);
-
+  const validateForm = () => {
+    const { name, email, phone, address } = checkoutFiledsData;
+    if (!name || !email || !phone || !address) {
+      enqueueSnackbar("Please fill in all the required fields", {
+        variant: "error",
+      });
+      return false;
+    }
+    return true;
+  };
   const handleCheckout = async () => {
+    if (!validateForm()) return;
     setIsLoading(true);
+    // await handleSubmit();
     const stripe = await loadStripe(
       "pk_test_51P7GGR2KcbZATXLfxRcETmoKL8lePagNdhe3n3S2HQq1Tnwi8wPsxpTGGrr1bLlim5kiMlIUGg736RQLNQWnFcA500a4Lxqcvv"
     );
     const body = {
-      products: cartItems,
+      productsData: cartItems,
+      name: checkoutFiledsData.name,
+      email: checkoutFiledsData.email,
+      phone: checkoutFiledsData.phone,
+      address: checkoutFiledsData.address,
     };
     const headers = {
       "Content-Type": "application/json",
@@ -63,8 +80,29 @@ const Cart = () => {
     const results = await stripe.redirectToCheckout({
       sessionId: session.id,
     });
-    console.log(results);
+    console.log(results, "results");
+    handleClearCart();
     setIsLoading(false);
+  };
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    try {
+      const productRef = collection(db, "orders");
+      await addDoc(productRef, {
+        name: checkoutFiledsData.name,
+        email: checkoutFiledsData.email,
+        phone: checkoutFiledsData.phone,
+        address: checkoutFiledsData.address,
+        products: cartItems,
+      });
+    } catch (error) {
+      console.error("Error submitting product:", error);
+      enqueueSnackbar("An error occurred while processing the product", {
+        variant: "error",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <>
@@ -120,10 +158,11 @@ const Cart = () => {
               <span className="font-[500] text-[16px] w-[200px] opacity-75">
                 Total
               </span>
-              <span
-                className="font-[500] text-[16px] w-[200px] opacity-75"
-              >
-                <i onClick={() => handleClearCart()} className="ri-close-large-line cursor-pointer"></i>
+              <span className="font-[500] text-[16px] w-[200px] opacity-75">
+                <i
+                  onClick={() => handleClearCart()}
+                  className="ri-close-large-line cursor-pointer"
+                ></i>
               </span>
             </div>
             {cartItems?.length > 0 ? (
@@ -204,7 +243,10 @@ const Cart = () => {
                     </div>
 
                     <div className="font-[500] text-[16px] w-[200px] opacity-75">
-                      <i onClick={() => handleRemoveItem(item?.id)} className="ri-close-large-line cursor-pointer"></i>
+                      <i
+                        onClick={() => handleRemoveItem(item?.id)}
+                        className="ri-close-large-line cursor-pointer"
+                      ></i>
                     </div>
                   </div>
                 );
@@ -277,9 +319,11 @@ const Cart = () => {
               onClick={() => {
                 cartItems?.length > 0 && setCheckoutModal(true);
               }}
-              className={`cursor-pointer self-stretch h-[46px] bg-amber-300 rounded-full py-[12px] text-stone-950 text-xl font-bold leading-snugl shadow justify-center items-center gap-2.5 inline-flex ${isLoading ? "opacity-50" : "opacity-100"
-                } ${cartItems?.length < 1 ? "cursor-not-allowed" : "cursor-pointer"
-                }`}
+              className={`cursor-pointer self-stretch h-[46px] bg-amber-300 rounded-full py-[12px] text-stone-950 text-xl font-bold leading-snugl shadow justify-center items-center gap-2.5 inline-flex ${
+                isLoading ? "opacity-50" : "opacity-100"
+              } ${
+                cartItems?.length < 1 ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
             >
               {isLoading ? "Loading..." : "Check Out"}
             </div>

@@ -47,9 +47,9 @@ function CartModel({
         />
         <input
           type="text"
-          name="phoneNumber"
+          name="phone"
           placeholder="Phone Number"
-          value={checkoutFiledsData.phoneNumber}
+          value={checkoutFiledsData.phone}
           onChange={handleInputChange}
           className="rounded-lg border-[1px] bg-transparent p-[12px] text-[#FFF] outline-none placeholder:text-[#FFF]"
         />
