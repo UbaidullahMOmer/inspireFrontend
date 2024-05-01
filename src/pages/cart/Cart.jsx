@@ -36,7 +36,7 @@ const Cart = () => {
   };
   const totalPrice = cartItems.reduce((total, item) => {
     const quantity = item?.qty || 0;
-    const price = item?.attributes?.price || 0;
+    const price = item?.price || 0;
     return total + quantity * price;
   }, 0);
 
@@ -88,7 +88,7 @@ const Cart = () => {
               viewBox="0 0 24 24"
               width="24"
               height="24"
-              color="#000"
+              color="#fff"
               fill="none"
               className="transition group-hover:scale-110 group-hover:-translate-x-1"
             >
@@ -132,12 +132,12 @@ const Cart = () => {
                   <div className="flex items-center justify-between w-full gap-[10px]  p-2 bg-[#272727] rounded-[4px] max-sm:flex-col max-sm:items-start max-sm:gap-4">
                     <div className="flex items-center gap-[10px] w-[275px]">
                       <img
-                        src={item?.attributes?.image?.data?.attributes?.url}
+                        src={item?.image}
                         className="rounded-[4px] w-[100px] h-[100px] object-cover"
                         alt=""
                       />
                       <span className="opacity-75 font-[500] text-[16px] ">
-                        {item?.attributes?.name}
+                        {item?.name}
                       </span>
                     </div>
                     <div className="flex items-center gap-[16px] w-[146px]">
@@ -197,10 +197,10 @@ const Cart = () => {
                       </span>
                     </div>
                     <div className="flex items-center w-[191px]">
-                      {item?.attributes?.flavor}
+                      {item?.flavor}
                     </div>
                     <div className="font-[500] text-[16px] w-[200px] opacity-75">
-                      ${item?.attributes?.price * item?.qty}
+                      ${item?.price * item?.qty}
                     </div>
 
                     <div className="font-[500] text-[16px] w-[200px] opacity-75">
