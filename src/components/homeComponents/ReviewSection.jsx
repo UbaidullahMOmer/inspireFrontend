@@ -47,7 +47,7 @@ function ReviewSection() {
           What <span>everyone</span> says
         </div>
         <div className="review_arrow_icons">
-          {/* <div className="left_arrow">
+          <div className="left_arrow">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -88,13 +88,13 @@ function ReviewSection() {
                 stroke-linejoin="round"
               />
             </svg>
-          </div> */}
+          </div>
         </div>
       </div>
       <div className="review_section_cards">
         <Swiper
           slidesPerView={3}
-          spaceBetween={90}
+          spaceBetween={20}
           navigation={true}
           className="mySwiper"
         >

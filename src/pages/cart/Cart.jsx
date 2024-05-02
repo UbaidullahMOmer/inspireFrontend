@@ -152,7 +152,7 @@ const Cart = () => {
         </div>
         <div className="flex gap-[36px] max-[1240px]:flex-col">
           <div className="flex flex-col gap-[12px] w-full">
-            <div className="flex items-center p-2  justify-between max-sm:hidden w-full gap-[10px]">
+            <div className="flex items-center p-2 justify-between max-sm:hidden w-full gap-[30px]">
               <span className="font-[500] text-[16px] w-[285px] opacity-75 pr-[10px]">
                 Product Details
               </span>
@@ -165,7 +165,7 @@ const Cart = () => {
               <span className="font-[500] text-[16px] w-[200px] opacity-75">
                 Total
               </span>
-              <span className="font-[500] text-[16px] w-[200px] opacity-75">
+              <span className="font-[500] text-[16px] w-[120px] opacity-75">
                 <i
                   onClick={() => handleClearCart()}
                   className="ri-close-large-line cursor-pointer"
@@ -175,7 +175,7 @@ const Cart = () => {
             {cartItems?.length > 0 ? (
               cartItems?.map((item) => {
                 return (
-                  <div className="flex items-center justify-between w-full gap-[10px]  p-2 bg-[#272727] rounded-[4px] max-sm:flex-col max-sm:items-start max-sm:gap-4">
+                  <div className="flex items-center justify-between w-full gap-[30px]  p-2 bg-[#272727] rounded-[4px] max-sm:flex-col max-sm:items-start max-sm:gap-4">
                     <div className="flex items-center gap-[10px] w-[275px]">
                       <img
                         src={item?.image}
@@ -249,7 +249,7 @@ const Cart = () => {
                       ${item?.price * item?.qty}
                     </div>
 
-                    <div className="font-[500] text-[16px] w-[200px] opacity-75">
+                    <div className="font-[500] text-[16px] w-[120px] opacity-75">
                       <i
                         onClick={() => handleRemoveItem(item?.id)}
                         className="ri-close-large-line cursor-pointer"
