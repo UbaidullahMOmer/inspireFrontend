@@ -162,7 +162,7 @@ const Cart = () => {
               <span className="font-[500] text-[16px] w-[191px] opacity-75">
                 Flavor
               </span>
-              <span className="font-[500] text-[16px] w-[200px] opacity-75">
+              <span className="font-[500] text-[16px] w-[160px] opacity-75">
                 Total
               </span>
               <span className="font-[500] text-[16px] w-[120px] opacity-75">
@@ -245,7 +245,7 @@ const Cart = () => {
                     <div className="flex items-center w-[191px]">
                       {item?.flavor}
                     </div>
-                    <div className="font-[500] text-[16px] w-[200px] opacity-75">
+                    <div className="font-[500] text-[16px] w-[160px] opacity-75">
                       ${item?.price * item?.qty}
                     </div>
 
