@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 
 function TermServices() {
   <div className='privacy bg-[#000] px-[6vw] '>
-    <div className="privacy_header">
+    <div className="flex ">
       <Link
         to={ROUTES.home}
-        className="flex items-center gap-[10px] text-[#FFF] group"
+        className="flex items-center gap-[10px] w-[120px] text-[#FFF] group"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ function TermServices() {
         </svg>
         <span className="font-[500] text-[20px]">Go Back</span>
       </Link>
-      <div className="text-[#fff] ">
+      <div className="flex justify-center  w-full  text-[#fff] text-[40px] ">
         Terms of Service
       </div>
     </div>

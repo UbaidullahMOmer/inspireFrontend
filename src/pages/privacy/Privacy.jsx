@@ -8,7 +8,7 @@ function Privacy() {
     <div className="flex ">
       <Link
         to={ROUTES.home}
-        className="flex items-center gap-[10px] w-[100px] text-[#FFF] group"
+        className="flex items-center gap-[10px] w-[120px] text-[#FFF] group"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

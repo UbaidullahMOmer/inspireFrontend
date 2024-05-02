@@ -6,5 +6,5 @@ export const ROUTES = {
     cancel: '/cancel',
     login: '/login',
     privacy: '/privacy',
-    termServices: '/term-services'
+    termServices: '/termServices'
 }
