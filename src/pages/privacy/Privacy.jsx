@@ -5,10 +5,10 @@ import { ROUTES } from '../../reactRoute/RouteConstants';
 function Privacy() {
   return (
     <div className='privacy bg-[#000] px-[6vw] '>
-    <div className="privacy_header">
+    <div className="flex ">
       <Link
         to={ROUTES.home}
-        className="flex items-center gap-[10px] text-[#FFF] group"
+        className="flex items-center gap-[10px] w-[100px] text-[#FFF] group"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -29,11 +29,11 @@ function Privacy() {
         </svg>
         <span className="font-[500] text-[20px]">Go Back</span>
       </Link>
-      <div className="text-[#fff] ">
+      <div className="flex justify-center  w-full  text-[#fff] text-[40px] ">
         Privacy and Policy
       </div>
     </div>
-    <div className='px-[8vw] py-[56px] text-[#fff]'>
+    <div className='px-[8vw] py-[56px] text-[#fff] '>
       SECTION 1 - WHAT DO WE DO WITH YOUR INFORMATION?<br />
       When you purchase something from our store, as part of the buying and selling process, we collect the personal information you give us such as your name, address and email address.<br />
       When you browse our store, we also automatically receive your computer’s internet protocol (IP) address in order to provide us with information that helps us learn about your browser and operating system.<br />
