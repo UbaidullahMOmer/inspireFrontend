@@ -4,13 +4,10 @@ function OurInspiration() {
   return (
     <div className="our_inspiration">
       <div className="our_inspiration_heading">
-        What is <span>Inspire</span> for
+      What is <span>Inspire Pre-Workout</span> for
       </div>
       <div className="our_inspiration_detail">
-        Quam quis orci turpis vulputate platea. Urna ipsum suscipit nullam ipsum
-        nam leo fringilla eget lorem. Sit vestibulum phasellus integer et et
-        diam malesuada. Sed tortor orci mauris proin ac. Venenatis euismod
-        mauris quis sit purus nisi. Sed quis eget augue ut aliquam sed.
+      Inspire Pre-Workout is a premium fitness supplement formulated to provide users with a powerful boost of energy, increased mental focus, and enhanced endurance during their workouts. The products contains a blend of high-quality ingredients backed by research for an improved workout performance. In addition, fitness enthusiasts, athletes, and individuals who dedicate their lives to fitness can come together as a community to share their adversity which will inspire others.
       </div> 
       <div className="our_inspiration_cards">
         <div className="our_inspiration_card">
