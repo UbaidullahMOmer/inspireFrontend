@@ -82,10 +82,10 @@ function Privacy() {
       We reserve the right to modify this privacy policy at any time, so please review it frequently. Changes and clarifications will take effect immediately upon their posting on the website. If we make material changes to this policy, we will notify you here that it has been updated, so that you are aware of what information we collect, how we use it, and under what circumstances, if any, we use and/or disclose it.<br />
       If our store is acquired or merged with another company, your information may be transferred to the new owners so that we may continue to sell products to you.<br /><br />
       QUESTIONS AND CONTACT INFORMATION<br />
-      If you would like to: access, correct, amend or delete any personal information we have about you, register a complaint, or simply want more information contact our Privacy Compliance Officer at josh@brustbeverages.com or by mail at<br />
+      If you would like to: access, correct, amend or delete any personal information we have about you, register a complaint, or simply want more information contact our Privacy Compliance Officer at distribution@inspiresupplement.com or by mail at<br />
       brüst<br />
       [Re: Privacy Compliance Officer]<br />
-      220 Duncan Mill Rd Toronto Ontario CA M3B3J5<br />
+      CA, V6G 3B7, BC, Vancouver, 1771 ROBSON, 1726<br />
     </div>
   </div>
   );

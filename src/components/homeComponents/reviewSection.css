@@ -66,6 +66,7 @@
         align-items: start;
         justify-content: center;
         width: 100%;
+
         .swiper-slide {
             min-width: 512px;
             max-width: 512px;
@@ -82,8 +83,8 @@
             background: #FFF;
             box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.05);
             padding: 32px;
-            min-width: 512px;
-            max-width: 512px;
+            width: 512px;
+            min-height: 380px;
 
             .review_section_card_detail {
                 color: #0F0F0F;

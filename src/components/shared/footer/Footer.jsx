@@ -26,6 +26,8 @@ function Footer() {
           </a>
         </div>
       </div>
+    <hr />
+      <div style={{ color: '#fff'}} >These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure or prevent any disease. Copyright © 2024 Inspire Pre Workout All Rights Reserved.</div>
     </div>
   );
 }

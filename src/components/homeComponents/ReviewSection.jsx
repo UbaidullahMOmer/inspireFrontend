@@ -7,36 +7,29 @@ function ReviewSection() {
     {
       img: "./images/reviewUser1.png",
       detail:
-        "Lacus vestibulum ultricies mi risus, duis non, volutpat nullam non. Magna congue nisi maecenas elit aliquet eu sed consectetur. Vitae quis cras vitae praesent morbi adipiscing purus consectetur mi.",
-      name: "Hellen Jummy",
+        "I haven't used this in a while, but remembered the last time I was taking it getting pretty good results. I did notice a difference, my size increased a bit and I felt stronger. I am stacking it with Pre-jym, DHEA and Alpha Jym and getting good results at 45, so I would recomend that stack if you are looking to add size/increase muscle. Good supplement overall, one of the better ones and a decent price.",
+      name: "D-Unit",
       job: "Financial Counselor",
     },
     {
       img: "./images/reviewUser1.png",
       detail:
-        "Lacus vestibulum ultricies mi risus, duis non, volutpat nullam non. Magna congue nisi maecenas elit aliquet eu sed consectetur. Vitae quis cras vitae praesent morbi adipiscing purus consectetur mi.",
-      name: "Hellen Jummy",
+        "I read alot of these reviews of people saying that it was causing their workouts to be more intense. Getting bigger gains while taking it, the only problem is its not an anabolic steroid. You wont feel it in your workouts because its supposedly puts your body into a protein synthesis state",
+      name: "Mike hilliker",
       job: "Financial Counselor",
     },
     {
       img: "./images/reviewUser1.png",
       detail:
-        "Lacus vestibulum ultricies mi risus, duis non, volutpat nullam non. Magna congue nisi maecenas elit aliquet eu sed consectetur. Vitae quis cras vitae praesent morbi adipiscing purus consectetur mi.",
-      name: "Hellen Jummy",
+        "I don't feel any difference in strength, recovery or in muscle, guys u can have better choice. Oral is not good for health but if u really want to take risk then anabol tablet is the option.",
+      name: "Harish kumar",
       job: "Financial Counselor",
     },
     {
       img: "./images/reviewUser1.png",
       detail:
-        "Lacus vestibulum ultricies mi risus, duis non, volutpat nullam non. Magna congue nisi maecenas elit aliquet eu sed consectetur. Vitae quis cras vitae praesent morbi adipiscing purus consectetur mi.",
-      name: "Hellen Jummy",
-      job: "Financial Counselor",
-    },
-    {
-      img: "./images/reviewUser1.png",
-      detail:
-        "Lacus vestibulum ultricies mi risus, duis non, volutpat nullam non. Magna congue nisi maecenas elit aliquet eu sed consectetur. Vitae quis cras vitae praesent morbi adipiscing purus consectetur mi.",
-      name: "Hellen Jummy",
+        "I am using this product past few days. And I am feeling that it helps in increasing the metabolism.",
+      name: "Sumit gupta",
       job: "Financial Counselor",
     },
   ];
@@ -101,7 +94,7 @@ function ReviewSection() {
           {review?.map((item, index) => {
             return (
               <SwiperSlide key={index}>
-                <div className="review_section_card">
+                <div className="review_section_card" style={{minHeight: ""}} >
                   <div className="review_section_card_detail">
                     {item.detail}
                   </div>
