@@ -9,7 +9,7 @@ function HeroSection() {
             REACH YOUR LIMITS AND GET TO THE NEXT LEVEL
           </div>
           <div className="hero_content_detail">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.
+          Unlock Your Potential: Your Guide to Wellness and Nutrition
           </div>
           <a href="#main_product_section" className="hero_content_btn">
             <div className="hero_btn_text">
