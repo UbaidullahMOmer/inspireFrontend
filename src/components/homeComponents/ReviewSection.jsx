@@ -5,28 +5,28 @@ import "swiper/css";
 function ReviewSection() {
   const review = [
     {
-      img: "./images/img(1).jpg",
+      img: "./images/img1.jpg",
       detail:
         "I haven't used this in a while, but remembered the last time I was taking it getting pretty good results. I did notice a difference, my size increased a bit and I felt stronger. I am stacking it with Pre-jym, DHEA and Alpha Jym and getting good results at 45, so I would recomend that stack if you are looking to add size/increase muscle. Good supplement overall, one of the better ones and a decent price.",
       name: "D-Unit",
       job: "Financial Counselor",
     },
     {
-      img: "./images/img(2).jpg",
+      img: "./images/img2.jpg",
       detail:
         "I read alot of these reviews of people saying that it was causing their workouts to be more intense. Getting bigger gains while taking it, the only problem is its not an anabolic steroid. You wont feel it in your workouts because its supposedly puts your body into a protein synthesis state",
       name: "Mike hilliker",
       job: "Financial Counselor",
     },
     {
-      img: "./images/img(3).jpg",
+      img: "./images/img3.jpg",
       detail:
         "I don't feel any difference in strength, recovery or in muscle, guys u can have better choice. Oral is not good for health but if u really want to take risk then anabol tablet is the option.",
       name: "Harish kumar",
       job: "Financial Counselor",
     },
     {
-      img: "./images/img(4).jpg",
+      img: "./images/img4.jpg",
       detail:
         "I am using this product past few days. And I am feeling that it helps in increasing the metabolism.",
       name: "Sumit gupta",
@@ -100,7 +100,7 @@ function ReviewSection() {
                   </div>
                   <div className="review_user">
                     <div className="review_user_img">
-                      <img src={item.img} alt="" />
+                      <img src={item.img} alt="" className="h-24 w-24 rounded-full" />
                     </div>
                     <div className="review_user_detail">
                       <div className="review_user_name">{item.name}</div>
