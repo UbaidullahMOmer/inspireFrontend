@@ -65,11 +65,13 @@ const Cart = () => {
       "pk_test_51P7GGR2KcbZATXLfxRcETmoKL8lePagNdhe3n3S2HQq1Tnwi8wPsxpTGGrr1bLlim5kiMlIUGg736RQLNQWnFcA500a4Lxqcvv"
     );
     const body = {
-      productsData: cartItems,
       name: checkoutFiledsData.name,
       email: checkoutFiledsData.email,
       phone: checkoutFiledsData.phone,
       address: checkoutFiledsData.address,
+      totalPrice: totalPrice,
+      products: cartItems,
+      date: Date.now(),
     };
     const headers = {
       "Content-Type": "application/json",
@@ -101,6 +103,7 @@ const Cart = () => {
         address: checkoutFiledsData.address,
         totalPrice: totalPrice,
         products: cartItems,
+        date: Date.now(),
       });
     } catch (error) {
       console.error("Error submitting product:", error);
