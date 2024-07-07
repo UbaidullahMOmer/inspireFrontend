@@ -83,6 +83,7 @@ function FaqSection() {
                     fill="#EFB749"
                   />
                 </svg>
+
               </div>
             </div>
             {faq.isOpen && (
