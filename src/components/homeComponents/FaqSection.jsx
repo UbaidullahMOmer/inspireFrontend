@@ -4,35 +4,43 @@ function FaqSection() {
   const [faqs, setFaqs] = useState([
     {
       question: "What is a pre-workout supplement?",
-      answer: "A pre-workout supplement is a product designed to be consumed before exercise to enhance performance. It typically contains ingredients like caffeine, amino acids, and vitamins to increase energy, focus, and endurance during workouts."
+      answer:
+        "A pre-workout supplement is a product designed to be consumed before exercise to enhance performance. It typically contains ingredients like caffeine, amino acids, and vitamins to increase energy, focus, and endurance during workouts.",
     },
     {
       question: "How does pre-workout supplement work?",
-      answer: "Pre-workout supplements work by providing your body with ingredients that can improve energy levels, focus, blood flow, and endurance. For example, caffeine can increase alertness and reduce perceived exertion, while amino acids like citrulline and beta-alanine can enhance blood flow and reduce fatigue."
+      answer:
+        "Pre-workout supplements work by providing your body with ingredients that can improve energy levels, focus, blood flow, and endurance. For example, caffeine can increase alertness and reduce perceived exertion, while amino acids like citrulline and beta-alanine can enhance blood flow and reduce fatigue.",
     },
     {
       question: "Is it safe to take pre-workout supplements?",
-      answer: "Pre-workout supplements can be safe when used as directed and in moderation. However, it's essential to be aware of the ingredients and potential side effects, especially if you have any pre-existing health conditions or sensitivities. Always consult with a healthcare professional before starting any new supplement regimen."
+      answer:
+        "Pre-workout supplements can be safe when used as directed and in moderation. However, it's essential to be aware of the ingredients and potential side effects, especially if you have any pre-existing health conditions or sensitivities. Always consult with a healthcare professional before starting any new supplement regimen.",
     },
     {
       question: "When should I take a pre-workout supplement?",
-      answer: "It's generally recommended to take a pre-workout supplement 30-60 minutes before exercise to allow enough time for the ingredients to be absorbed and take effect. However, the timing may vary depending on the specific product and your individual tolerance."
+      answer:
+        "It's generally recommended to take a pre-workout supplement 30-60 minutes before exercise to allow enough time for the ingredients to be absorbed and take effect. However, the timing may vary depending on the specific product and your individual tolerance.",
     },
     {
       question: "What are the common ingredients in pre-workout supplements?",
-      answer: "Common ingredients in pre-workout supplements include caffeine, beta-alanine, creatine, citrulline, arginine, branched-chain amino acids (BCAAs), and various vitamins and minerals. These ingredients are chosen for their potential to enhance energy, focus, endurance, and performance."
+      answer:
+        "Common ingredients in pre-workout supplements include caffeine, beta-alanine, creatine, citrulline, arginine, branched-chain amino acids (BCAAs), and various vitamins and minerals. These ingredients are chosen for their potential to enhance energy, focus, endurance, and performance.",
     },
     {
       question: "Can I take pre-workout supplements every day?",
-      answer: "While it's generally safe to take pre-workout supplements occasionally, using them every day may not be necessary or advisable for everyone. Regular use of high doses of caffeine or other stimulants can lead to tolerance, dependence, and potential side effects. It's essential to cycle off pre-workout supplements periodically to avoid these issues."
+      answer:
+        "While it's generally safe to take pre-workout supplements occasionally, using them every day may not be necessary or advisable for everyone. Regular use of high doses of caffeine or other stimulants can lead to tolerance, dependence, and potential side effects. It's essential to cycle off pre-workout supplements periodically to avoid these issues.",
     },
     {
       question: "Are there any side effects of pre-workout supplements?",
-      answer: "Some common side effects of pre-workout supplements include jitteriness, insomnia, increased heart rate, digestive issues, and dehydration. These side effects are often associated with high doses of caffeine or other stimulants. It's essential to start with a low dose and monitor your body's response to avoid adverse reactions."
+      answer:
+        "Some common side effects of pre-workout supplements include jitteriness, insomnia, increased heart rate, digestive issues, and dehydration. These side effects are often associated with high doses of caffeine or other stimulants. It's essential to start with a low dose and monitor your body's response to avoid adverse reactions.",
     },
     {
       question: "Are pre-workout supplements only for bodybuilders?",
-      answer: "No, pre-workout supplements are not only for bodybuilders. They can be beneficial for anyone looking to improve their exercise performance, whether it's endurance athletes, casual gym-goers, or fitness enthusiasts. However, it's essential to choose a pre-workout supplement that aligns with your specific goals and needs."
+      answer:
+        "No, pre-workout supplements are not only for bodybuilders. They can be beneficial for anyone looking to improve their exercise performance, whether it's endurance athletes, casual gym-goers, or fitness enthusiasts. However, it's essential to choose a pre-workout supplement that aligns with your specific goals and needs.",
     },
   ]);
   const toggleAnswer = (index) => {
@@ -48,15 +56,17 @@ function FaqSection() {
           Frequently asked <span>questions</span>
         </div>
         <div className="faq_paragraph">
-          Et pulvinar nec interdum integer id urna molestie porta nullam. A,
-          donec ornare sed turpis pulvinar purus maecenas quam a. Erat porttitor
-          pharetra sed in mauris elementum sollicitudin.
+          Common Questions About Pre-Workout Supplements: Everything You Need to
+          Know
         </div>
       </div>
       <div className="faq_questions">
         {faqs.map((faq, index) => (
           <div className="faq_question_div" key={index}>
-            <div className="faq_question_top" onClick={() => toggleAnswer(index)}>
+            <div
+              className="faq_question_top"
+              onClick={() => toggleAnswer(index)}
+            >
               <div className="faq_question">{faq.question}</div>
               <div className={`faq_arrow ${faq.isOpen ? "rotate-180" : ""}`}>
                 <svg
@@ -76,9 +86,7 @@ function FaqSection() {
               </div>
             </div>
             {faq.isOpen && (
-              <div className="faq_question_bottom">
-                {faq.answer}
-              </div>
+              <div className="faq_question_bottom">{faq.answer}</div>
             )}
           </div>
         ))}
